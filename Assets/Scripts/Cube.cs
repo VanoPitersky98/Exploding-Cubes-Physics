@@ -1,13 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class Cube : MonoBehaviour
 {
+    [SerializeField] private Renderer _renderer;
+
     public float SplitChance { get; private set; } = 1.0f;
 
     private void Start()
     {
-        GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value);
+        _renderer.material.color = new Color(Random.value, Random.value, Random.value);
     }
 
     public void Init(float parentChance, Vector3 parentScale)
