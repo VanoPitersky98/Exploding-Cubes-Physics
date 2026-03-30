@@ -9,14 +9,13 @@ public class CubeExploder : MonoBehaviour
     {
         foreach (Cube cube in cubesToPush)
         {
-            if (cube.TryGetComponent(out Rigidbody rb))
+            if (cube.TryGetComponent(out Rigidbody rigidbody))
             {
                 float sizeMultiplier = cube.transform.localScale.x;
-                
                 float adaptedForce = _explosionForce * sizeMultiplier;
                 float adaptedRadius = _explosionRadius * sizeMultiplier;
 
-                rb.AddExplosionForce(adaptedForce, explosionPoint, adaptedRadius, 1f);
+                rigidbody.AddExplosionForce(adaptedForce, explosionPoint, adaptedRadius, 1f);
             }
         }
     }
