@@ -16,10 +16,17 @@ public class CubeSplitter : MonoBehaviour
     {
         if (hitTransform.TryGetComponent(out Cube cube))
         {
+            Vector3 position = cube.transform.position;
+            float currentScale = cube.transform.localScale.x;
+
             if (Random.value <= cube.SplitChance)
             {
                 Cube[] newCubes = _spawner.Spawn(cube);
-                _exploder.Explode(cube.transform.position, newCubes);
+                _exploder.ExplodeCubes(position, currentScale, newCubes);
+            }
+            else
+            {
+                _exploder.ExplodeArea(position, currentScale);
             }
 
             Destroy(cube.gameObject);
